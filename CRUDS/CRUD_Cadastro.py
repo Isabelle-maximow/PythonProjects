@@ -59,6 +59,12 @@ while True:
         else:
             print(f"Usuario {deletar} não encontrado.")
     
-    # opção 4:
-    
+    # opção 4: salvar em txt
+    elif menu == "4":
+        with open("usuarios.txt", "w") as arquivo:
+            # loop para escrever os dados no arquivo linha por linha
+            for i in range(len(lista_nome)):
+                arquivo.write(f"Nome: {lista_nome[i]}, Telefone: {lista_telefone[i]}, E-mail: {lista_email[i]}\n")
+        print("Saindo...")
+        break
        
