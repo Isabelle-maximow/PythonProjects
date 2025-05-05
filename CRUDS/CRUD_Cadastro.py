@@ -67,4 +67,5 @@ while True:
                 arquivo.write(f"Nome: {lista_nome[i]}, Telefone: {lista_telefone[i]}, E-mail: {lista_email[i]}\n")
         print("Saindo...")
         break
-       
+    else:
+        print("Comando inexistentre")
