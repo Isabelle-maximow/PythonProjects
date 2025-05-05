@@ -1,11 +1,3 @@
-'''
-IDENTIFICAÇÃO
-    Dev: Isabelle Ferreira
-    RA: 242715216
-Data: 29/04/2025
-
-'''
-# ---------------------------------- # ----------------------------------- #
 
 # LISTA
 # Listas são estruturas de dados mutáveis, ou seja, podem ser alteradas após a criação.
