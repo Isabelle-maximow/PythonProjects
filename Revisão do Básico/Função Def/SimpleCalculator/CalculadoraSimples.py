@@ -4,6 +4,9 @@ from sub import subtracao
 from multi import multiplicacao
 from div import divisao
 
+# ou, podemos colocar td dentro de um unico arquivo e importar:
+# from arquivo import soma, subtracao, multiplicacao, divisao
+
 '''  Calculadora simples com Funçao Def	'''
 # função soma:
 def soma (a, b):
