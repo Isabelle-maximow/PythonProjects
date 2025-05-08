@@ -60,32 +60,24 @@ votos = {
     1: 0,
     2: 0,
     3: 0
-}#dicionário dos votos
- 
-#input total de eleitores
+}
 total_eleitores = int(input("Digite o total eleitores: ")) 
 
-#laço que registra o voto de cada candidato
 for i in range(total_eleitores):
-    #exibir as opções de voto
     print("Opções de voto: ")
-    #for para printar os candidatos do dicionário
-    for num, nome in candidatos.items():#trazer todos os dados do dicionarios
-        print(f"{num}: {nome}")#mostra número e nome do candidato
+    for num, nome in candidatos.items():
+        print(f"{num}: {nome}")
     #solicitar o voto
     voto = int(input("Digite o seu voto: "))
     #contar+1
-    i+=1
-    #verificar o voto com if,
-    # verificar se corresponde ao número válido
-    # do dicionario    
+    i+=1   
     if voto in votos:
-         votos[int(voto)] += 1 #incrementar =+1 na chave correspondente
+         votos[int(voto)] += 1 
     else:
         print("Voto invalido!")
-#exibir o resultado
+
 print(votos)
 print("\nResultado da votação:")
 for num_str, nome in candidatos.items():
-    num_int = int(num_str)  #trazer todos os dados do dicionarios
-    print(f"{nome}: {votos[num_int]} votos")  # tirei virgula e um tab
+    num_int = int(num_str) 
+    print(f"{nome}: {votos[num_int]} votos")  
