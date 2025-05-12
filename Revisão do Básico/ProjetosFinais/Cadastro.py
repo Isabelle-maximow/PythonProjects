@@ -14,7 +14,7 @@ def validar_nota():
     notas = [] # armazenar as notas 
     for i in range (1,4):
         while True: # para validação das 3 notas
-            nota = float(input(f"Digite a {i}ª nota do aluno (entre 0 e 10): "))
+            nota = float(input(f"Digite a {i}ª nota do aluno: "))
             if nota == 0 or nota <= 10:
                 notas.append(nota)   # colocando no dicionario notas
                 break
@@ -31,3 +31,17 @@ def cadastrar_aluno():
         nome = validar_nome() 
         notas = validar_nota()
         media = sum(notas) / len(notas) # calcular a média do aluno
+        
+        # verificar a situação do aluno:
+        classificacao = "Aprovado" if media >= 6 else "Reprovado"
+        # adicionar a lista:
+        alunos.append(nome, notas, media, classificacao)
+        
+        continuar = input("Deseja cadastrar outro aluno? (s/n): ")
+        if continuar.lower() != "s":
+            print("Cadastros salvos! Encerrado sistemas...")
+            break
+    return alunos # retornar a lista de alunos cadastrados
+cadastrar_aluno() # teste 
+
+# exercicio modelarização do sistemas...
