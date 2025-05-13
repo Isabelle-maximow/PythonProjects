@@ -47,8 +47,9 @@ while True:
                 MENU:
         1 - Adicionar um usuario
         2 - Visualizar usuario
-        3 - Deletar usuario
-        4 - Salvar e Sair 
+        3 - Atualizar usuario
+        4 - Deletar usuario
+        5 - Salvar e Sair 
         Escolha uma opção: """)
     # opção 1: 
     if menu == "1":
@@ -74,6 +75,23 @@ while True:
             
     # opção 3:
     elif menu == "3":
+       # verificar se tem usuarios cadastrados
+       if not lista_nome:
+            print("Nenhum usuario cadastrado.")
+            continue
+        nome = str(input("Digite o nome do usuario que deseja atualizar: ")).split()
+        if nome in lista_nome:
+            # pegar o indice da liSTA:
+            indice = lista_nome.index(nome) # posição do nome na lista
+            print(f" Usuario atualizado com sucesso!")
+        else:
+            print(f"Usuario {nome} não encontrado.")
+            
+            
+            
+            
+    # opção 4:
+    elif menu == "4":
         deletar = str(input("Digite o nome do usuario que deseja deletar: "))
         # se o nome estiver na lista, deletar:
         if deletar in lista_nome:
@@ -88,7 +106,7 @@ while True:
             print(f"Usuario {deletar} não encontrado.")
     
     # opção 4: salvar em txt
-    elif menu == "4":
+    elif menu == "5":
         with open("usuarios.txt", "w") as arquivo:
             # loop para escrever os dados no arquivo linha por linha
             for i in range(len(lista_nome)):
