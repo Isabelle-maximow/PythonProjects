@@ -13,6 +13,34 @@ dicionario = {
     "email": lista_email
 }
 
+# função carregar dados ao inicar o programa
+def carregar_dados():
+    try:
+        with open("usuarios.txt", "r") as arquivo:
+            for linha in arquivo:
+                dados = linha.strip().split(", ")
+                
+                # estrair os valores apos as chaves
+                # replace = cria uma copia do arquivo original sem modificar:
+                nome = dados[0].replace("Nome: ", "")
+                email = dados[1].replace("E-mail: ", "")
+                telefone = dados[3].replace("Telefone: ", "")
+                
+                # add os dados:
+                lista_nome.append(nome)
+                lista_telefone.append(telefone)
+                lista_email.append(email)  
+                
+    except FileNotFoundError:
+        # se o arquivo não existir, comece uma lista vazia para n parar o programa
+        pass
+
+# carregar dados existentes ap iniciar:
+carregar_dados() 
+
+
+
+
 # menu de opções
 while True:
     menu = input ("""
