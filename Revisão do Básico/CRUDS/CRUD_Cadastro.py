@@ -76,19 +76,28 @@ while True:
     # opção 3:
     elif menu == "3":
        # verificar se tem usuarios cadastrados
-       if not lista_nome:
+        if not lista_nome:
             print("Nenhum usuario cadastrado.")
             continue
-        nome = str(input("Digite o nome do usuario que deseja atualizar: ")).split()
-        if nome in lista_nome:
-            # pegar o indice da liSTA:
-            indice = lista_nome.index(nome) # posição do nome na lista
+        nome = input("Digite o nome do usuario que deseja atualizar: ").split()
+        if nome in lista_nome.index(nome):
+            print("Atualizando novo usuario...")
+            novo_nome = str(f"Novo nome:{lista_nome[indice]} ").strip()
+            novo_telefone = str(f"Novo telefone:{lista_telefone[indice]} ").strip()
+            novo_email = str(f"Novo e-mail:{lista_email[indice]} ").strip()
+          
+        if novo_nome:
+            lista_nome[indice] = novo_nome
+        if novo_telefone:
+            lista_telefone[indice] = novo_telefone
+        if novo_email:
+            lista_email[indice] = novo_email
             print(f" Usuario atualizado com sucesso!")
+            
         else:
             print(f"Usuario {nome} não encontrado.")
             
-            
-            
+     
             
     # opção 4:
     elif menu == "4":
