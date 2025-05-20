@@ -1,0 +1,67 @@
+usuarios = {
+    'nomes': [],
+    'emails': [],
+    'telefones': []
+}
+
+from salvar_dados import salvar_dados
+from carregar_dados import carregar_dados
+
+def crud_usuarios():
+    carregar_dados()
+    while True:
+        try:
+            menu = input("""Menu CRUD:
+            1 - Cadastrar usuário
+            2 - Visualizar usuário
+            3 - Deletar usuário
+            4 - Sair e salvar
+            Escolha uma opção: """)
+    
+            if menu == "1":
+                while True:
+                    nome = input(" Insira o nome: ")
+                    telefone = input("Insira o telefone: ")
+                    email = input("Insira o E-mail: ")
+                    
+                    usuarios['nomes'].append(nome)
+                    usuarios['emails'].append(email)
+                    usuarios['telefones'].append(telefone)
+                    
+                    print("Usuário cadastrado com sucesso!")
+                    outro = input("Deseja cadastrar outro usuário? (s/n)")
+                    if outro != "s":
+                        break
+                
+            elif menu == "2":
+                if usuarios["nomes"]:
+                 for i in range(len(usuarios["nomes"])):
+                     print(f"""
+                            Usuário {i + 1}
+                            Nome: {usuarios['nomes'][i]}
+                            Telefone: {usuarios['telefones'][i]}
+                            E-mail: {usuarios['emails'][i]}
+                            """)
+                else:
+                    print("Nenhum usuário cadastrado.")
+            elif menu == "3":
+                nome = input("Digite o nome para excluir: ")
+                if nome in usuarios["nomes"]:
+                    idx = usuarios["nomes"].index(nome) # encontra o índice do usuário
+                    for key in ["nomes", "telefones", "emails"]: 
+                        usuarios[key].pop(idx)  # removendo os dados do usuário
+                    print("Usuário excluído com sucesso.")
+                else:
+                    print("Usuário não encontrado.")
+
+            elif menu == "4":
+                salvar_dados()
+                print("Dados salvos. Encerrando...")
+                break
+            else:
+                print("Opção inválida.")
+        
+        except KeyboardInterrupt:
+            print("\nOperação cancelada pelo usuário.")
+        except ValueError:
+            print("Valor inválido. Tente novamente.")
