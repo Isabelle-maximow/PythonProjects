@@ -16,7 +16,7 @@ print (f"Dólar: R${dados["USDBRL"]["bid"]}")
 print (f"Euro: R${dados["EURBRL"]["bid"]}")
 print (f"Bitcon: R${dados["BTCBRL"]["bid"]}")
 
-# CONVERTENDO EM REAIS PARA...
+# CONVERTENDO EM REAIS PARA... - é so colocar como float 
 url = "https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL" 
 
 response = requests.get(url)
@@ -25,6 +25,6 @@ response.raise_for_status()
  
 dados = response.json()
 
-print (f"Dólar: R${dados["USDBRL"]["bid"]}")
-print (f"Euro: R${dados["EURBRL"]["bid"]}")
-print (f"Bitcon: R${dados["BTCBRL"]["bid"]}")
+print (f"Dólar: R${float(dados["USDBRL"]["bid"])}") 
+print (f"Euro: R${float(dados["EURBRL"]["bid"])}")
+print (f"Bitcon: R${float(dados["BTCBRL"]["bid"])}")
