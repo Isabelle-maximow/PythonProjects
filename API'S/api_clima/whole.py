@@ -24,12 +24,12 @@ dados = response.json()
 temperatura = dados["current_weather"] ["temperature"]
 velocidade = dados["current_weather"]["windspeed"]
 
+
 # separando em funções:
 
 import requests
 
 def solicitar():
-    # inputs de latitude e longitude:
     latitude = float(input("Digite a latitude: "))
     longitude = float(input("Digite a longitude: "))
     return latitude, longitude
@@ -65,8 +65,6 @@ if __name__ == "__main__":
     dados = requisicao(url_api)
     temperatura, velocidade = extrair_dados(dados)
     main(temperatura, velocidade)
+  
 
-# exibir valores:
-print(f"A temperatura atual é: {temperatura}C°")
-print(f"A velocidade do vento atual é: {velocidade}km/h")
 

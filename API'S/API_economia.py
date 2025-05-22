@@ -30,9 +30,10 @@ print (f"Euro: R${float(dados["EURBRL"]["bid"])}")
 print (f"Bitcon: R${float(dados["BTCBRL"]["bid"])}")
 
 # separando em funções
+
 import requests
 def api_url():
-    url="https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,ETH-BRL"
+    url="https://api.exchangerate-api.com/v4/latest/USD"
     return url
 
 def converte(cotacao_dolar, quantidade_real):
@@ -56,3 +57,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#####################################################################

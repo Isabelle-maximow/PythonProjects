@@ -26,7 +26,10 @@ print(f"Estado: {dados['estado']}")
 print(f"UF: {dados['uf']}")
 print(f"Região: {dados['regiao']}")
 
+
+
 # separando em funções:
+
 import requests 
 
 def solicitar():
