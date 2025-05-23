@@ -72,7 +72,6 @@ def calculo_media(notas):
 
 # 5° cadastrar
 def cadastro_aluno():
-    while True:
         conexao, cursor = conectar_db # chamar o banco
         nome = validar_nome()
         notas = validar_nota()
@@ -86,11 +85,100 @@ def cadastro_aluno():
         conexao.commit()
         # fechar a conexao:
         conexao.close()
+        print("aluno cadastado com sucesso!")
         
-        # input para mais cadastros:
-        continuar = input("Digite 's' para sair ou qualquer tecla para continuar... ").lower()
-        if continuar == "s":
-            print("saindo do sistema...")
-            break
-
-conectar_db()
+  
+# 6° função exibir a tabela alunos
+def exibir_alunos():
+    # conctar ao banco:
+    conexao,cursor = conectar_db
+    # comandos sql:
+    cursor.execute("SELECT * FROM alunos")
+    # função do python chamada fethall, leitura de dados:
+    alunos = cursor,fethall() # leitura sql
+    conexao.close()
+    
+    # loop para exibir no terminal ao sair do sistema:
+    for i in alunos:
+        print(f"""
+              ID: {i[0]},
+              Nome: {i[1]},
+              Nota1: {i[2]},
+              Nota2: {i[3]},
+              Nota3: {i[4]},
+              Média: {i[5]},
+              Situação: {i[6]}
+              """) 
+        print("-"*30)
+        
+def atualizar_aluno():
+    exibir_alunos()
+    conexao,cursor = conectar_db()
+    while True:
+        try:
+            # editar aluno pelo id
+            id_aluno = int(input("Digite o ID do aluno para atualizar(ou 0 para sair): "))
+            if id_aluno == 0:
+                print("Opção cancelada....")
+                break
+            # verificar se o aluno existe:
+            cursor.execute("SELECT id FROM alunos WHERE id=?", (id_aluno,)) # stop da query
+            # trazer os dados do bd :
+            if cursor.fethall():
+                # coletar os dados para atualizar novamente:
+                nome = validar_nome()
+                notas = validar_nota()
+                media,situacao = calculo_media(notas)
+                # atualizar os dados na tabela:
+                cursor.execute("UPDATE alunos SET nome = ?, nota1=?, nota2=?, nota3=?, media=?, situacao=? WHERE id=?",  
+                               (nome,notas[0], notas[1],notas[2],media,situacao, id_aluno))
+                conexao.commit()
+                print("Aluno atualizado com sucesso")
+            else:
+                print("ID inválido. Tente novamente")
+        except ValueError:
+            print("erro") 
+            
+def deletar_aluno():
+    exibir_alunos()
+    conexao,cursor = conectar_db()
+    while True:
+        try:
+            # editar aluno pelo id
+            id_aluno = int(input("Digite o ID do aluno para deletar(ou 0 para sair): "))
+            if id_aluno == 0:
+                print("Opção cancelada....")
+                break
+            # trazer os dados do bd :
+            if cursor.fethall():
+                cursor.execute("DELETE alunos WHERE id=?", (id_aluno,)) # stop da quer
+                conexao.commit()
+                print("Aluno atualizado com sucesso")
+            else:
+                print("ID inválido. Tente novamente")
+        except ValueError:
+            print("erro") 
+            
+def main():
+    try:
+        while True:
+            opcao = menu()
+            if opcao == "1":
+                cadastro_aluno(alunos)
+            elif opcao == "2":
+                exibir_aluno(alunos)
+            elif opcao == "3":
+                editar_aluno(alunos)
+            elif opcao == "4":
+                exibir_situacao(alunos, "Aprovado")
+            elif opcao == "5":
+                exibir_situacao(alunos, "Reprovado")
+            elif opcao == "6":
+                print("Saindo do sistemas...")
+            else:
+                print("Opção inválida, escolha uma opção existente.")
+    except ValueError:
+        print("Selecine uma opção válida!")
+            
+if __name__ == "__main__":
+    main()     
