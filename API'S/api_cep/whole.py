@@ -32,7 +32,7 @@ print(f"Região: {dados['regiao']}")
 
 import requests 
 
-def solicitar():
+def solicitar(): 
     cep = input('Digite o cep: ')
     url = f'https://viacep.com.br/ws/{cep}/json/'
     return url

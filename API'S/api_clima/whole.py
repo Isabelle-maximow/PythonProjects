@@ -29,12 +29,14 @@ velocidade = dados["current_weather"]["windspeed"]
 
 import requests
 
+# def solicitar():
+#     latitude = float(input("Digite a latitude: "))
+#     longitude = float(input("Digite a longitude: "))
+#     return latitude, longitude
+
 def solicitar():
     latitude = float(input("Digite a latitude: "))
     longitude = float(input("Digite a longitude: "))
-    return latitude, longitude
-
-def url(latitude, longitude):
     url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true"
     return url
     
@@ -53,18 +55,14 @@ def extrair_dados(dados):
     velocidade = dados["current_weather"]["windspeed"]
     return temperatura, velocidade
 
-def main(temperatura, velocidade):
-    # exibir valores:
-    print(f"A temperatura atual é: {temperatura}C°")
-    print(f"A velocidade do vento atual é: {velocidade}km/h")
 
 if __name__ == "__main__":
     # rodar o código:
     latitude, longitude = solicitar()
-    url_api = url(latitude, longitude)
-    dados = requisicao(url_api)
+    dados = requisicao(url)
     temperatura, velocidade = extrair_dados(dados)
-    main(temperatura, velocidade)
+    print(f"A temperatura atual é: {temperatura}C°")
+    print(f"A velocidade do vento atual é: {velocidade}km/h")
   
 
 
