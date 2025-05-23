@@ -159,26 +159,5 @@ def deletar_aluno():
         except ValueError:
             print("erro") 
             
-def main():
-    try:
-        while True:
-            opcao = menu()
-            if opcao == "1":
-                cadastro_aluno(alunos)
-            elif opcao == "2":
-                exibir_aluno(alunos)
-            elif opcao == "3":
-                editar_aluno(alunos)
-            elif opcao == "4":
-                exibir_situacao(alunos, "Aprovado")
-            elif opcao == "5":
-                exibir_situacao(alunos, "Reprovado")
-            elif opcao == "6":
-                print("Saindo do sistemas...")
-            else:
-                print("Opção inválida, escolha uma opção existente.")
-    except ValueError:
-        print("Selecine uma opção válida!")
-            
-if __name__ == "__main__":
-    main()     
+def menu():
+    
