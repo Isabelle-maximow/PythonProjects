@@ -1,3 +1,4 @@
+
 from api import API
 from requisicao import requisicao
 from loop import loop
