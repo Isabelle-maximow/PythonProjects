@@ -135,3 +135,10 @@ def main():
 
 if __name__ == "__main__":
     main() 
+    
+# Estilo
+[theme]
+primaryColor = "#0000FF"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F0F0"
+textColor = "#000000"
