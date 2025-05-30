@@ -76,3 +76,89 @@ def inserir_filme(nome, ano, nota):
         conexao.commit()
         conexao.close()
         st.success("Filme cadastrado com sucesso!")    
+        
+# ler os filmes do bando de dados:
+def ler_filme():
+    conexao, cursor = conectar_db_filmes()
+    if conexao:
+        cursor.execute('''
+                       SELECT id, nome, nota FROM filmes
+                       ''')
+        # obter dados com o fetchall:
+        filmes = cursor.fetchall()
+        return filmes # retorna a lista de filmes
+    return[] # lista vazia se n tiver filmes cadastrados
+
+# atualizar a nota do filme:
+def atualizar_filmes(id_filme, nova_nota):
+    conexao, cursor = conectar_db_filmes()
+    if conexao:
+        cursor.execute('''
+                       UPDATE filmes SET nota = %s WHERE id = %s ''',
+                       (id_filme, nova_nota))
+        conexao.commit()
+        conexao.close()
+        st.success("Nota atualizada com sucesso!")
+        
+# deletar um filme:
+def deletar_filme(id_filme):
+     conexao, cursor = conectar_db_filmes()
+     if conexao:
+        cursor.execute('''
+                        DELETE FROM filmes WHERE id = %s
+                        ''', (id_filme,))
+        conexao.commit()
+        conexao.close()
+        st.success("Filme deletado com sucesso!")
+        
+# função com pandas para criar o dataframe do id, nome, nota e ano:
+def exibir_tabela(filmes):
+    if filmes:
+        # converter o que vem do banco de daods me dataframe:
+        df = pd.DataFrame(filmes, columns = [
+            "ID", "NOME", "ANO", "NOTA"
+        ])
+        st.dataframe(df)
+        return df
+    else:
+        st.write("Nenhum filme cadastrado ainda.")
+        return None
+    
+# exibir um grafico em colunas coloridas:
+def exibir_grafico(filmes):
+    df = exibir_tabela(filmes)
+    # if para obter as cores caso ja tenha filme scadastrados:
+    if df is not None:
+        # definir as cores base nas notas
+        df ["Cor"] = df ["Nota"].apply(
+            lambda nota: "green" if nota >= 8 else "yellow" if nota >= 5 else "red" )
+        # criar grafico de barras com o plotly:
+        fig = px.bar(df, x = "Nome", y = "Nota", color = "Cor",
+                     color_discrate_map = {
+                         "green": "green",
+                         "yellow": "yellow",
+                         "red" : "red"}, 
+                        title = "Notas de filmes", range_y = [0,10])
+        st.plotly_chart(fig) # exibir o grafico de barras na tela
+        
+# tella de login:
+def tela_login():
+    st.subheader("Digite suas credenciais")
+    
+    nome_usuarios = st.text_input("Nome do usuário: ")
+    senha = st.text_input("Senha: ", type: "password")
+    
+    if st.button("Entrar"):
+        if validar_login(nome_usuarios,senha):
+            #marcar como logado:
+            st.session_state["logado"] = True
+            st.session_state["usuario"] = nome_usuarios
+            st.success(f"Login realizado com sucesso {nome_usuarios}!")
+            
+            # recarregar:
+            st.rerun()
+        else:
+            st.error("Usuário ou senha incorreto!")
+            
+    
+    
