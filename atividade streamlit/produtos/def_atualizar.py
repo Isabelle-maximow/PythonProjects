@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from def_db import conectar_bd
-# Função - Atualizar produto
+
 def atualizar_produto():
     st.subheader("Atualizar Produto")
     conexao, cursor = conectar_bd()

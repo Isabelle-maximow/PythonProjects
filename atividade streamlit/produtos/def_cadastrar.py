@@ -1,6 +1,6 @@
 from def_db import conectar_bd
 import streamlit as st
-# Função Cadastrar produto
+
 def cadastrar_produto():
     st.subheader("Cadastrar Produto")
     nome = st.text_input("Nome do produto")

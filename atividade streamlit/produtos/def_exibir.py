@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from def_db import conectar_bd
-# Função Exibir todos os produtos
+
 def exibir_produtos():
     st.subheader("Lista de Produtos")
     conexao, cursor = conectar_bd()

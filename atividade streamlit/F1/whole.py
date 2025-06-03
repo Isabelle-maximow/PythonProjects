@@ -1,9 +1,9 @@
+
 import requests
 import json
 import streamlit as st
 import pandas as pd
 
-# Função 1 - Buscar informações do piloto
 def buscar_piloto_por_numero():
     st.subheader("Buscar informações de um piloto por número")
     numero_piloto = st.text_input("Digite o número do piloto desejado:")
