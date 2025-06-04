@@ -58,4 +58,4 @@ async def saudacao(nome: str):
 
 # rodar API uvicorn:
 # python -m uvicorn main: nome_arquivo_sem.py --reload 
-# python -m uvicorn main: intro --reload 
+# python -m uvicorn main:app --reload
