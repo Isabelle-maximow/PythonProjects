@@ -20,7 +20,7 @@ livros = {
     14: {"titulo": "Crítica da Razão Pura", "autor": "Immanuel Kant", "ano": 1781, "ID": 14},
     15: {"titulo": "Dialética do Esclarecimento", "autor": "Adorno e Horkheimer", "ano": 1944, "ID": 15},
 
-    # Romance clássico internacional
+    # Romance clássico internacional 
     16: {"titulo": "Guerra e Paz", "autor": "Leon Tolstói", "ano": 1869, "ID": 16},
     17: {"titulo": "Anna Kariênina", "autor": "Leon Tolstói", "ano": 1877, "ID": 17},
     18: {"titulo": "Os Miseráveis", "autor": "Victor Hugo", "ano": 1862, "ID": 18},
